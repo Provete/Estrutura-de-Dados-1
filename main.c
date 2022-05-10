@@ -1,60 +1,43 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-int Fatorial(int x)
+typedef struct String
 {
-    if(x == 1) 
-        return 1;
+    char* data;
+    unsigned int size;
+} String;
 
-    return x * Fatorial(x-1);
+String* CreateString(const char string[])
+{
+    String* returnString;
+    returnString->size = strlen(string);
+
+    returnString->data = (char*) malloc(returnString->size+1);
+
+    strcpy(returnString->data, string);
+    returnString->data[returnString->size] = '\0';
+
+    return returnString;
+} 
+
+void PrintString(const String* const string)
+{
+    printf("%s\n", string->data);
 }
 
-/**
- * @brief Calcula a sequencia de Fibbonacci de forma iterativa
- * 
- * @param x Posição do elemento da sequencia para ser calculado
- * @return double Número de fibbonacci na posição x
- */
-double FibbonacciIterativa(int x)
+void FreeString(String* string)
 {
-    if(x == 0)
-        return 0;
-
-    double anterior = 0;
-    double proximo = 1;
-    double temporario = 0;
-
-    for(int i=1; i < x; i++)
-    {
-        temporario = proximo;
-        proximo += anterior;
-        anterior = temporario;
-    }
-
-    return proximo;
+    free(string->data);
+    string->size = 0;
 }
 
-/**
- * @brief Calcula a Sequencia de Fibbonacci por meio da recursividade
- * 
- * @param x Posição do elemento da sequencia de Fibbonacci a ser calculado
- * @return int Valor da sequencia de Fibbonacci na posição x
- */
-int FibbonacciRecursiva(int x)
-{
-    if(x == 1 || x == 2) 
-        return (x-1);
-
-    return FibbonacciRecursiva(x-1) + FibbonacciRecursiva(x-2);
-}
-
-/**
- * @brief roda o programa
- * 
- * @return int 
- */
 int main()
 {
-    int x = 10;
-    printf("O Numero de Fibbonacci na posição %d é: %d\n", x, FibbonacciRecursiva(x));
+    String* nome = CreateString("Ruanzin viado");
+    printf("String possui %d characteres\n", nome->size);
+    PrintString(nome);
+
+    FreeString(nome);
     return 0;
 }
