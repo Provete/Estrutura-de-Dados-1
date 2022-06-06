@@ -7,7 +7,7 @@ main.o: .\sources\main.c
 listaencadeada.o: .\sources\listaencadeada.c
 	gcc -c .\sources\listaencadeada.c -o listaencadeada.o
 
-listaencadeadacomdescritor.o:
+listaencadeadacomdescritor.o: ./sources/lista_encadeada_com_descritor.c
 	gcc -c .\sources\lista_encadeada_com_descritor.c -o listaencadeadacomdescritor.o
 
 execute: .\release\final.o

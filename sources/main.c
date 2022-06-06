@@ -8,13 +8,12 @@ int main()
     CriarLista(&listaEncadeada);
 
     InserirElementoPelaFrente(&listaEncadeada, 5);
-    ImprimirLista(&listaEncadeada);
 
     InserirElementoPelaFrente(&listaEncadeada, 95);
     InserirElementoPelaFrente(&listaEncadeada, 1120);
     InserirElementoPelaFrente(&listaEncadeada, -558);
-    InserirElementoPorTras(&listaEncadeada, 9988);
-    InserirElementoPorTras(&listaEncadeada, -998756);
+
+    LimparLista(&listaEncadeada);
 
     ImprimirLista(&listaEncadeada);
 

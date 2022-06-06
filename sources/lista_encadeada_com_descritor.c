@@ -46,7 +46,7 @@ void InserirElementoPelaFrente(Descritor* listaEncadeada, int novoValor)
     novoElemento->proximo = listaEncadeada->primeiro;
     listaEncadeada->primeiro = novoElemento;
 
-    if(EstaVazia(&listaEncadeada))
+    if(EstaVazia(listaEncadeada))
     {
         listaEncadeada->ultimo = listaEncadeada->primeiro;
     }
@@ -65,7 +65,7 @@ void InserirElementoPorTras(Descritor* listaEncadeada, int novoValor)
     }
 
     novoElemento->valor = novoValor;
-    listaEncadeada->ultimo->proximo = novoElemento;
+    (listaEncadeada->ultimo)->proximo = novoElemento;
     listaEncadeada->ultimo = novoElemento;
 
     if(EstaVazia(listaEncadeada))
@@ -96,4 +96,71 @@ void ImprimirLista(Descritor* listaEncadeada)
         printf("Mal Elemento: %d\n", iterador->valor);
         iterador = iterador->proximo;
     }
+}
+
+/**
+ * @brief Remove a primeira ocorrência de um elemento da lista dado seu valor.
+ * 
+ * @param listaEncadeada Lista para ter um valor removido.
+ * @param valor Valor para remover.
+ */
+void RemoverElemento(Descritor* listaEncadeada, int valor)
+{
+    NoLista* iterador = listaEncadeada->primeiro;
+    NoLista* iteradorAnterior = NULL;
+
+    while(iterador != NULL && iterador->valor != valor)
+    {
+        iteradorAnterior = iterador;
+        iterador = iterador->proximo;
+    }
+
+    if(iterador == NULL)
+    {
+        printf("Elemento não encontrado\n");
+        return;
+    }
+
+    if(iteradorAnterior == NULL)
+    {
+        listaEncadeada->primeiro = iterador->proximo;
+        free(iterador);
+        listaEncadeada->tamanho--;
+    
+        if(listaEncadeada->primeiro == NULL)
+            listaEncadeada->ultimo = NULL;
+        return;
+    }
+
+    iteradorAnterior->proximo = iterador->proximo;
+    iterador->proximo = NULL;
+    free(iterador);
+
+    listaEncadeada->tamanho--;
+}
+
+/**
+ * @brief Libera o espaço de todos os elementos da lista e a inicializa de novo.
+ * 
+ * @param listaEncadeada Lista a ser liberada.
+ */
+void LimparLista(Descritor* listaEncadeada)
+{
+    if(EstaVazia(listaEncadeada))
+    {
+        printf("A lista está vazia\n");
+        return;
+    }
+
+    NoLista* iterador = listaEncadeada->primeiro;
+    NoLista* iteradorAnterior = NULL;
+
+    while(iterador != NULL)
+    {
+        iteradorAnterior = iterador;
+        iterador = iterador->proximo;
+        free(iteradorAnterior);
+    }
+
+    CriarLista(listaEncadeada);
 }

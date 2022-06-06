@@ -3,7 +3,7 @@
 typedef struct noLista
 {
     int valor;
-    struct listaEncadeada* proximo;
+    struct noLista* proximo;
 } NoLista;
 
 typedef struct descritor
@@ -17,4 +17,6 @@ void CriarLista(Descritor* listaEncadeada);
 void InserirElementoPelaFrente(Descritor* listaEncadeada, int novoValor);
 void InserirElementoPorTras(Descritor* listaEncadeada, int novoValor);
 void ImprimirLista(Descritor* listaEncadeada);
+void RemoverElemento(Descritor* listaEncadeada, int valor);
+void LimparLista(Descritor* listaEncadeada);
 int EstaVazia(Descritor* listaEncadeada);
