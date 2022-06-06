@@ -1,19 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "listaencadeada.h"
-
+#include "lista_encadeada_com_descritor.h"
 
 int main()
 {
-    ListaEncadeada* lista = CriarLista();
+    Descritor listaEncadeada;
+    CriarLista(&listaEncadeada);
 
-    AdicionarElementoEmOrdem(&lista, 6);
-    AdicionarElementoEmOrdem(&lista, -9);
-    AdicionarElementoEmOrdem(&lista, 5598);
-    AdicionarElementoEmOrdem(&lista, 0);
+    InserirElementoPelaFrente(&listaEncadeada, 5);
+    ImprimirLista(&listaEncadeada);
 
-    //RemoverPorValor(&lista, 958);
+    InserirElementoPelaFrente(&listaEncadeada, 95);
+    InserirElementoPelaFrente(&listaEncadeada, 1120);
+    InserirElementoPelaFrente(&listaEncadeada, -558);
+    InserirElementoPorTras(&listaEncadeada, 9988);
+    InserirElementoPorTras(&listaEncadeada, -998756);
 
-    ImprimirLista(&lista);
+    ImprimirLista(&listaEncadeada);
+
     return 0;
 }

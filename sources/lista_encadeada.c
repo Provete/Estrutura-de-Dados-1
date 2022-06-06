@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "listaencadeada.h"
+#include "lista_encadeada.h"
 
 
 /**
@@ -163,4 +163,47 @@ void AdicionarElementoEmOrdem(ListaEncadeada** listaEncadeada, int valor)
 
     iteradorAnterior->proximo = novoNo;
     novoNo->proximo = iterador;
+}
+
+/**
+ * @brief Calcula a quantidade de elementos existentes na lista encadeada
+ * 
+ * @param listaEncadeada Lista para calcular o tamanho
+ * @return int Quantidade de elementos da lista
+ */
+int CalcularTamanho(ListaEncadeada** listaEncadeada)
+{
+    int tamanho = 0;
+    ListaEncadeada* iterador = *listaEncadeada;
+
+    while(iterador != NULL)
+    {
+        tamanho++;
+        iterador = iterador->proximo;
+    }
+
+    return tamanho;
+}
+
+/**
+ * @brief Pega o ultimo elemento na lista encadeada
+ * 
+ * @param listaEncadeada Lista para pegar o ultimo elemento
+ * @return ListaEncadeada* Ponteiro para o ultimo elemento da lista
+ */
+ListaEncadeada* PegarUltimoElemento(ListaEncadeada** listaEncadeada)
+{
+    ListaEncadeada* iterador = *listaEncadeada;
+
+    if(iterador == NULL)
+    {
+        return NULL;
+    }
+
+    while(iterador->proximo != NULL)
+    {
+        iterador = iterador->proximo;
+    }
+
+    return iterador;
 }
