@@ -1,21 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "lista_encadeada_com_descritor.h"
+#include "lista_encadeada_com_cabeça_calda.h"
 
 int main()
 {
-    Descritor listaEncadeada;
-    CriarLista(&listaEncadeada);
+    ListaEncadeada lista;
+    CriarLista(&lista);
+    ImprimirLista(&lista);
+    InserirElemento(&lista, 96);
+    InserirElemento(&lista, 5543);
+    InserirElemento(&lista, 543);
+    ImprimirLista(&lista);
 
-    InserirElementoPelaFrente(&listaEncadeada, 5);
-
-    InserirElementoPelaFrente(&listaEncadeada, 95);
-    InserirElementoPelaFrente(&listaEncadeada, 1120);
-    InserirElementoPelaFrente(&listaEncadeada, -558);
-
-    LimparLista(&listaEncadeada);
-
-    ImprimirLista(&listaEncadeada);
 
     return 0;
 }
